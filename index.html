@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>San Valentín</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff6a88, #ff99ac);
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      border-radius: 28px;
+      text-align: center;
+      box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+      max-width: 90%;
+    }
+
+    h1 {
+      color: white;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 16px 36px;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    #si {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    #no {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .message {
+      color: white;
+      font-size: 1.6rem;
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 id="pregunta">¿Puedo ser tu San Valentín?</h1>
+
+    <div class="buttons" id="botones">
+      <button id="si">Sí</button>
+      <button id="no">No</button>
+    </div>
+
+    <div class="message" id="final">
+      YEEEIII, te amo <span style="color:red;">♥</span>
+    </div>
+  </div>
+
+  <script>
+    const si = document.getElementById("si");
+    const no = document.getElementById("no");
+    const botones = document.getElementById("botones");
+    const pregunta = document.getElementById("pregunta");
+    const final = document.getElementById("final");
+
+    const mensajesNo = [
+      "no",
+      "dale no seas mala",
+      "yo sé que vos querés",
+      "bueno no te voy a rogar",
+      "DALEEEEE"
+    ];
+
+    let contadorNo = 0;
+
+    no.addEventListener("click", () => {
+      if (contadorNo < mensajesNo.length) {
+        no.textContent = mensajesNo[contadorNo];
+        contadorNo++;
+      }
+
+      if (contadorNo === mensajesNo.length) {
+        no.disabled = true;
+      }
+    });
+
+    si.addEventListener("click", () => {
+      pregunta.style.display = "none";
+      botones.style.display = "none";
+      final.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
